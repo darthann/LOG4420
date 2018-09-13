@@ -18,10 +18,26 @@
             </nav>
         </header>
 
-        <footer style="position: absolute; right: 0; left: 0; bottom: 0;">
+        <main style="display: block; margin-left: auto; margin-right: auto">
+            <div style="position: relative; display: inline-block; padding: 100px 200px 0 15%">
+                <h1>Passer une commande</h1> 
+                <h2>Contact</h2>
+                <label> Prénom :</label> <input type="text" id="first-name" required> <br />
+                <label> Nom :</label> <input type="text" id="last-name" required> <br />
+                <label> Adresse courriel :</label> <input type="text" id="email" required> <br />
+                <label> Numéro de téléphone :</label> <input type="text" id="phone" required> <br />
+
+                <h2>Paiement</h2>
+                <label> Numéro de carte de crédit :</label> <input type="text" id="credi-card" required> <br />
+                <label> Date d'expiration de la carte :</label> <input type="text" id="credi-card-expiry" required> <br />
+                <br />
+                <input type="submit" value="Payer" onclick="location.href='confirmation.html';">
+            </div>
+        </main>
+        <footer>
             <h2 style="text-align: center; font-weight: normal">
-                Jean-Christophe Martel, 1794036<br />
-                Julien Gauthier, 1791257
+                Jean-Christophe Martel, 1794036
+                <br /> Julien Gauthier, 1791257
             </h2>
         </footer>
     </body>
