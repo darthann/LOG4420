@@ -5,12 +5,11 @@
         <title>OnlineShop - Commande</title>
     </head>
     <body style="font-family: 'Segoe UI', sans-serif; min-height: 100%">
-        <!-- TODO -->
-        <header style="position: relative; display: inline-block; width: 100%; padding-left: 20px">
-            <a href="index.html" style="position: relative; display: inline-block; padding-top: 10px">
+        <header style="position: relative; display: inline-block; width: 100%">
+            <a href="index.html" style="position: relative; display: inline-block; padding-top: 10px; padding-left: 20px">
                 <img src="assets/img/logo.svg" />
             </a>
-            <nav style="position: relative; float: right; padding: 55px 50px 0 0">
+            <nav style="position: relative; float: right; padding: 55px 30px 0 0">
                 <a href="index.html" style="padding-right: 20px">Accueil</a>
                 <a href="products.html" style="padding-right: 20px">Produits</a>
                 <a href="contact.html" style="padding-right: 20px">Contact</a>
@@ -19,7 +18,8 @@
         </header>
 
         <main style="display: block; margin-left: auto; margin-right: auto">
-            <div style="position: relative; display: inline-block; padding: 100px 200px 0 15%">
+            <form style="position: relative; display: inline-block; padding: 100px 200px 0 15%">
+                <!-- Contact section -->
                 <h1>Passer une commande</h1> 
                 <h2>Contact</h2>
                 <label> Prénom :</label> <input type="text" id="first-name" required> <br />
@@ -27,13 +27,15 @@
                 <label> Adresse courriel :</label> <input type="text" id="email" required> <br />
                 <label> Numéro de téléphone :</label> <input type="text" id="phone" required> <br />
 
+                <!-- Payment section -->
                 <h2>Paiement</h2>
                 <label> Numéro de carte de crédit :</label> <input type="text" id="credi-card" required> <br />
                 <label> Date d'expiration de la carte :</label> <input type="text" id="credi-card-expiry" required> <br />
                 <br />
-                <input type="submit" value="Payer" onclick="location.href='confirmation.html';">
-            </div>
+                <button type="submit" onclick="location.href='confirmation.html';">Payer</button>
+            </form>
         </main>
+
         <footer>
             <h2 style="text-align: center; font-weight: normal">
                 Jean-Christophe Martel, 1794036
