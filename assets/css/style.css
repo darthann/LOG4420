@@ -1,6 +1,13 @@
+html {
+    height: 100%;
+}
+
 body {
+    min-height: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
+    display: grid;
+    grid-template-rows: 60px auto 70px;
 }
 
 header {
@@ -67,4 +74,13 @@ main {
 
 footer {
     height: 70px;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    background-color: #EEEEEE;
+    border-top: solid 1px #CCCCCC;
+}
+
+footer h4 {
+    text-align: center;
+    font-weight: normal;
 }
