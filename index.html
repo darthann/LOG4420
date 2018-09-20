@@ -6,17 +6,25 @@
         <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
         <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
     </head>
-    <body style="font-family: 'Segoe UI', sans-serif; min-height: 100%">
-        <header style="position: relative; display: inline-block; width: 100%">
-            <a href="index.html" style="position: relative; display: inline-block; padding-top: 10px; padding-left: 20px">
-                <img src="assets/img/logo.svg" />
-            </a>
-            <nav style="position: relative; float: right; padding: 55px 30px 0 0">
-                <a href="index.html" style="padding-right: 20px">Accueil</a>
-                <a href="products.html" style="padding-right: 20px">Produits</a>
-                <a href="contact.html" style="padding-right: 20px">Contact</a>
-                <a href="shopping-cart.html" style="padding-right: 20px">Panier</a>
-            </nav>
+    <body>
+        <header>
+            <div id="header-content">
+                <a href="index.html">
+                    <img src="assets/img/logo.svg" height="40px" />
+                </a>
+                <nav>
+                    <a href="index.html">Accueil</a>
+                    <a href="products.html">Produits</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="shopping-cart.html" class="shopping-cart" title="Panier">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                            <i class="fa fa-shopping-cart fa-stack-1x"></i>
+                        </span>
+                        <span class="count">3</span>
+                    </a>
+                </nav>
+            </div>
         </header>
 
         <main style="display: block; margin-left: auto; margin-right: auto">
