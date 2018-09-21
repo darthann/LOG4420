@@ -69,7 +69,34 @@ header {
 
 main {
     max-width: 1200px;
-    padding: 0 20px;
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+#home-main img {
+    position: relative;
+    float: right;
+}
+
+#home-main div {
+    position: relative;
+    display: inline-block;
+}
+
+.btn {
+    padding: 3px 12px 5px 12px;
+    color: white;
+    text-decoration: none;
+    background-color: #14597F;
+    border: solid 1px #0B2D3D;
+    border-radius: 4px;
+    transition: 0.2s all;
+}
+
+.btn:hover {
+    background-color: #1FB5E9;
 }
 
 footer {
