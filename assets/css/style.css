@@ -75,12 +75,12 @@ main {
     margin-top: 50px;
 }
 
-#home-main img {
+#home-content img {
     position: relative;
     float: right;
 }
 
-#home-main div {
+#home-content div {
     position: relative;
     display: inline-block;
 }
@@ -92,11 +92,15 @@ main {
     background-color: #14597F;
     border: solid 1px #0B2D3D;
     border-radius: 4px;
-    transition: 0.2s all;
+    transition: 0.2s ease-out;
 }
 
 .btn:hover {
     background-color: #1FB5E9;
+}
+
+#products-content aside {
+    width: 25%;
 }
 
 footer {
