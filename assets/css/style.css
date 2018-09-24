@@ -99,8 +99,104 @@ main {
     background-color: #1FB5E9;
 }
 
+#products-content {
+    display: flex;
+}
+
+#products-content h1 {
+    font-size: 30px;
+    margin-top: 0;
+}
+
 #products-content aside {
+    flex-grow: 1;
     width: 25%;
+}
+
+#products-content aside h4 {
+    margin-top: 5px;
+    margin-bottom: 12px;
+}
+
+#products-content aside div button {
+    display: block;
+    width: 250px;
+    padding: 10px 0 10px 10px;
+    background-color: white;
+    border: solid 1px #999;
+    text-align: left;
+    transition: 0.2s ease-out;
+}
+
+#products-content aside div button:not(:last-child) {
+    border-bottom: none;
+}
+
+#products-content aside div button:first-child {
+    border-radius: 4px 4px 0 0;
+}
+
+#products-content aside div button:last-child {
+    border-radius: 0 0 4px 4px;
+}
+
+#products-content aside div button:hover {
+    background-color: #F3F3F3;
+}
+
+#products-content aside div button.selected {
+    background-color: #DDF2FB;
+}
+
+#products-content section {
+    flex-grow: 3;
+    width: 75%;
+}
+
+#products-count {
+    margin-top: 0;
+    float: right;
+}
+
+#products-list {
+    list-style: none;
+    column-count: 3;
+    padding: 0;
+}
+
+#products-list li {
+    margin-bottom: 15px;
+    border: solid 1px #999;
+    border-radius: 4px;
+    transition: 0.2s ease-out;
+}
+
+#products-list li:hover {
+    background-color: #F3F3F3;
+}
+
+#products-list li a {
+    text-decoration: none;
+    color: black;
+}
+
+#products-list li h3 {
+    padding: 10px 0 0 10px;
+    margin-top: 0;
+}
+
+#products-list li p {
+    text-align: right;
+    margin-bottom: 0;
+    padding: 0 10px 10px 0;
+    font-size: 18px;
+}
+
+#products-list li img {
+    display: block;
+    height: 75%;
+    width: 75%;
+    margin: 0 auto;
 }
 
 footer {
