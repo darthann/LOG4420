@@ -178,15 +178,21 @@ main {
 
 #products-list {
     list-style: none;
-    column-count: 3;
+    width: 100%;
     padding: 0;
 }
 
 #products-list li {
+    width: 32%;
+    display: inline-block;
     margin-bottom: 15px;
     border: solid 1px #999;
     border-radius: 4px;
     transition: 0.2s ease-out;
+}
+
+#products-list li:not(:nth-child(3n)) {
+    margin-right: 10px;
 }
 
 #products-list li:hover {
