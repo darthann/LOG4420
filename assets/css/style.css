@@ -340,6 +340,7 @@ main {
     border: none;
     border-radius: 20px;
     background-color: #DDD;
+    cursor: pointer;
 }
 
 th {
@@ -354,7 +355,7 @@ th:last-child, td:last-child {
 }
 
 td {
-    height: 40px;
+    height: 45px;
 }
 
 td:first-child {
