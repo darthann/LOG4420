@@ -27,22 +27,39 @@
             </div>
         </header>
 
-        <main style="display: block; margin-left: auto; margin-right: auto">
-            <form style="position: relative; display: inline-block; padding: 100px 200px 0 15%">
+        <main id="order-content">
+            <h1>Commande</h1> 
+            <form>
                 <!-- Contact section -->
-                <h1>Passer une commande</h1> 
                 <h2>Contact</h2>
-                <label> Prénom :</label> <input type="text" id="first-name" required> <br />
-                <label> Nom :</label> <input type="text" id="last-name" required> <br />
-                <label> Adresse courriel :</label> <input type="text" id="email" required> <br />
-                <label> Numéro de téléphone :</label> <input type="text" id="phone" required> <br />
+                <div class="container">
+                    <div class="left">
+                        <label>Prénom</label>
+                        <input class="form-control" type="text" id="first-name" required placeholder="Prénom">
+                        <label>Adresse courriel</label>
+                        <input class="form-control" type="email" id="email" required placeholder="Adresse courriel">
+                    </div>
+                    <div class="right">
+                        <label>Nom</label>
+                        <input class="form-control" type="text" id="last-name" required placeholder="Nom">
+                        <label>Numéro de téléphone</label>
+                        <input class="form-control" type="tel" id="phone" required placeholder="###-###-####">
+                    </div>
+                </div>
 
                 <!-- Payment section -->
                 <h2>Paiement</h2>
-                <label> Numéro de carte de crédit :</label> <input type="text" id="credi-card" required> <br />
-                <label> Date d'expiration de la carte :</label> <input type="text" id="credi-card-expiry" required> <br />
-                <br />
-                <button type="submit" onclick="location.href='confirmation.html';">Payer</button>
+                <div class="container">
+                    <div class="left">
+                        <label>Numéro de carte de crédit</label>
+                        <input class="form-control" type="password" id="credit-card" required placeholder="&bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull; &bull;&bull;&bull;&bull;">
+                    </div>
+                    <div class="right">
+                        <label>Expiration (mm/aa)</label>
+                        <input class="form-control" type="text" id="credit-card-expiry" required placeholder="mm/aa">
+                    </div>
+                </div>
+                <button type="submit" onclick="location.href='confirmation.html';" class="btn">Payer »</button>
             </form>
         </main>
 

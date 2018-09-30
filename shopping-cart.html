@@ -27,41 +27,41 @@
             </div>
         </header>
 
-        <main style="display: block; margin-left: auto; margin-right: auto">
-            <div style="position: relative; display: inline-block; padding: 100px 200px 0 15%">
-                <h1>Panier</h1> <br />
-                <table style="border: 1px solid #000000">
-                    <tr>
-                        <th></th>
-                        <th>Nom</th>
-                        <th>Prix unitaire</th>
-                        <th>Quantité</th>
-                        <th>Prix</th>
-                    </tr>
-                    <tr>
-                        <td><button>X</button></td>
-                        <td><a href="product.html">Apple TV</a></td>
-                        <td>249.99 $</td>
-                        <td><button>-</button> 2 <button>+</button></td>
-                        <td>999.98 $</td>
-                    </tr>
-                    <tr>
-                            <td><button>X</button></td>                   
-                            <td><a href="product.html">Nikon D7000</a></td>
-                            <td>549.99 $</td>
-                            <td><button>-</button> 1 <button>+</button></td>
-                            <td>549.99 $</td>
-                    </tr>
-                    <tr>
-                            <td><button>X</button></td>
-                            <td><a href="product.html">Portable</a></td>
-                            <td>699.99 $</td>
-                            <td><button>-</button> 1 <button>+</button></td>
-                            <td>699.99 $</td>
-                    </tr>
-                </table>
-                <p>Total: 2249.96 $</p>
-                <button>Vider le panier</button> <a href="order.html">Commander</a>
+        <main id="shopping-cart-content">
+            <h1>Panier</h1>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Produit</th>
+                    <th>Prix unitaire</th>
+                    <th>Quantité</th>
+                    <th>Prix</th>
+                </tr>
+                <tr>
+                    <td><button>X</button></td>
+                    <td><a href="product.html">Apple TV</a></td>
+                    <td>249.99 $</td>
+                    <td><button>-</button><span class="quantity">1</span><button>+</button></td>
+                    <td>249.99 $</td>
+                </tr>
+                <tr>
+                    <td><button>X</button></td>                   
+                    <td><a href="product.html">Nikon D7000</a></td>
+                    <td>549.99 $</td>
+                    <td><button>-</button><span class="quantity">1</span><button>+</button></td>
+                    <td>549.99 $</td>
+                </tr>
+                <tr>
+                    <td><button>X</button></td>
+                    <td><a href="product.html">Portable</a></td>
+                    <td>699.99 $</td>
+                    <td><button>-</button><span class="quantity">1</span><button>+</button></td>
+                    <td>699.99 $</td>
+                </tr>
+            </table>
+            <p id="total">Total: <span id="price">1499.97 $</span></p>
+            <button class="btn"><span><i class="far fa-trash-alt"></i></span>Vider le panier</button>
+            <a href="order.html" class="btn">Commander »</a>
         </main>
 
         <footer>

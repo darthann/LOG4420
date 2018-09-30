@@ -12,7 +12,7 @@ body {
 
 /*
 ---------------------------------------------------------------------------------
-                                    Header
+                                      Header
 ---------------------------------------------------------------------------------
 */
 
@@ -83,7 +83,7 @@ main {
 
 /*
 ---------------------------------------------------------------------------------
-                                    Home page
+                                     Home page
 ---------------------------------------------------------------------------------
 */
 
@@ -98,7 +98,7 @@ main {
 }
 
 .btn {
-    padding: 7px 12px 7px 12px;
+    padding: 7px 12px;
     color: white;
     text-decoration: none;
     background-color: #14597F;
@@ -113,7 +113,7 @@ main {
 
 /*
 ---------------------------------------------------------------------------------
-                                Products page
+                                  Products page
 ---------------------------------------------------------------------------------
 */
 
@@ -225,7 +225,7 @@ main {
 
 /*
 ---------------------------------------------------------------------------------
-                                Product page
+                                  Product page
 ---------------------------------------------------------------------------------
 */
 
@@ -258,8 +258,12 @@ main {
     border-radius: 4px;
 }
 
-#product-content div#form {
+#form {
     border-top: dotted 2px #CCC;
+}
+
+#form button.btn {
+    cursor: pointer;
 }
 
 #product-content h3 {
@@ -277,27 +281,163 @@ main {
 
 /*
 ---------------------------------------------------------------------------------
-                                Contact page
+                                  Contact page
 ---------------------------------------------------------------------------------
 */
 
-/*
----------------------------------------------------------------------------------
-                            Shopping cart page
----------------------------------------------------------------------------------
-*/
+#site-name {
+    font-style: italic;
+}
+
+#container {
+    width: 100%;
+    border: solid 1px #999;
+    border-radius: 8px;
+}
+
+.column {
+    width: 33%;
+    display: inline-block;
+    height: 185px;
+    vertical-align: top;
+}
+
+.column h2 {
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+
+.column p {
+    text-align: center;
+    font-style: italic;
+}
+
+.column a {
+    text-decoration: none;
+    color: #2181b4;
+    font-style: normal;
+}
+
+
 
 /*
 ---------------------------------------------------------------------------------
-                                Order page
+                               Shopping cart page
 ---------------------------------------------------------------------------------
 */
 
+#shopping-cart-content table {
+    border-bottom: solid 1px black;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#shopping-cart-content table button {
+    height: 22px;
+    width: 22px;
+    border: none;
+    border-radius: 20px;
+    background-color: #DDD;
+}
+
+th {
+    border-bottom: solid 2px black;
+    text-align: left;
+    height: 35px;
+    vertical-align: middle;
+}
+
+th:last-child, td:last-child {
+    text-align: right;
+}
+
+td {
+    height: 40px;
+}
+
+td:first-child {
+    width: 40px;
+}
+
+td a {
+    text-decoration: none;
+    color: #2181b4;
+}
+
+#total {
+    text-align: right;
+}
+
+#price {
+    font-weight: bold;
+}
+
+.quantity {
+    padding: 0 10px;
+}
+
+#shopping-cart-content a.btn {
+    float: right;
+}
+
+#shopping-cart-content button.btn {
+    font-size: 15px;
+    padding: 9px 12px;
+    cursor: pointer;
+}
+
+.btn .fa-trash-alt {
+    margin-right: 5px;
+}
+
 /*
 ---------------------------------------------------------------------------------
-                                Confirmation page
+                                  Order page
 ---------------------------------------------------------------------------------
 */
+
+.left, .right {
+    flex-grow: 2;
+    width: 50%;
+}
+
+.left {
+    padding-right: 10px;
+}
+
+.right {
+    padding-left: 10px;
+}
+
+#order-content label {
+    font-weight: bold;
+}
+
+#order-content input {
+    width: 98%;
+    padding: 9px;
+    padding-right: 0;
+    margin: 5px 0 15px 0;
+}
+
+#order-content button.btn {
+    float: right;
+    font-size: 15px;
+    padding: 9px 12px;
+    cursor: pointer;
+}
+
+/*
+---------------------------------------------------------------------------------
+                               Confirmation page
+---------------------------------------------------------------------------------
+*/
+
+#confirmation-number {
+    font-weight: bold;
+}
 
 /*
 ---------------------------------------------------------------------------------
