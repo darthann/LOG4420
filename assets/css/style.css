@@ -136,7 +136,7 @@ main {
     margin-bottom: 12px;
 }
 
-#products-content aside div button {
+#products-content aside button {
     display: block;
     width: 250px;
     padding: 10px 0 10px 10px;
@@ -144,6 +144,7 @@ main {
     border: solid 1px #999;
     text-align: left;
     transition: 0.2s ease-out;
+    cursor: pointer;
 }
 
 #products-content aside div button:not(:last-child) {
