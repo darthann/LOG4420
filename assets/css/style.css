@@ -231,6 +231,14 @@ main {
 ---------------------------------------------------------------------------------
 */
 
+#product-content div#no-product {
+    display: none;
+}
+
+#product-content div#product {
+    display: none;
+}
+
 #product-content img {
     flex-grow: 2;
     width: 50%;
@@ -249,7 +257,7 @@ main {
     margin-top: 0;
 }
 
-#product-char {
+#product-features {
     margin-bottom: 25px;
 }
 

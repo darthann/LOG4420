@@ -57,7 +57,7 @@ $(document).ready(function() {
     var sortOrder = "low-high";
     var category = "all";
 
-    $.getJSON("http://localhost:8000/data/products.json", function(data) {
+    $.getJSON("./data/products.json", function(data) {
         $.each(data, function(product) {
             products.push(data[product]);
         });
