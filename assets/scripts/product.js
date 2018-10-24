@@ -55,24 +55,23 @@ $(document).ready(function() {
         
         if (cartCount != null) {
             cartCount = parseInt(cartCount) + parseInt(number);
-            localStorage.setItem("count", cartCount);
-            showBadge(cartCount);
         } else {
-            localStorage.setItem("count", number);
-            showBadge(number);
+            cartCount = parseInt(number);
         }
 
-        // Ça marche pas, trouver un autre moyen
-        var list = localStorage.getItem("list");
-        console.log(localStorage.getItem("list"));
-        if (list != null) {
-            list.push(id + "," + number);
-            localStorage.setItem("list", list);
+        localStorage.setItem("count", cartCount);
+        showBadge(cartCount);
+
+        // On utilise un gros string de ce format : id-qty,id-qty,id-qty,id-qty,id-qty,...
+        // Il peut arriver que les id se répètent, il va falloir en tenir compte à la génération du panier.
+        // (Par exemple, 12-3,8-4,5-2,5-1 est un format possible).
+        var cart = localStorage.getItem("cart");
+        if (cart == null) {
+            cart = id + "-" + number;
         } else {
-            var list = [];
-            list.push(id + "," + number);
-            localStorage.setItem("list", list);
+            cart += "," + id + "-" + number;
         }
+        localStorage.setItem("cart", cart);
         
     });
 });

@@ -1,15 +1,11 @@
 $(document).ready(function() {
-
-    // Only works in shopping-cart.html, need to use local storage.
-    // var counter = 0;
-    // $("tr").each(function() {
-    //     if ($(this).find("td").length != 0) {
-    //         counter++;
-    //     }
-    // });
     
-    localStorage.removeItem("count");
-    localStorage.removeItem("list");
+    /**
+     * Uncomment and go to the home page to reset the local storage.
+     * (Add others lines if other items are created).
+     */
+    // localStorage.removeItem("count");
+    // localStorage.removeItem("cart");
 
     var cartCount = localStorage.getItem("count");
     if (cartCount != null && cartCount != 0) {
