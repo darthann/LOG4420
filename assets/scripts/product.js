@@ -62,16 +62,13 @@ $(document).ready(function() {
         localStorage.setItem("count", cartCount);
         showBadge(cartCount);
 
-        // On utilise un gros string de ce format : id-qty,id-qty,id-qty,id-qty,id-qty,...
-        // Il peut arriver que les id se répètent, il va falloir en tenir compte à la génération du panier.
-        // (Par exemple, 12-3,8-4,5-2,5-1 est un format possible).
-        var cart = localStorage.getItem("cart");
-        if (cart == null) {
-            cart = id + "-" + number;
+        var itemCount = localStorage.getItem("item" + id);
+        if (itemCount == null) {
+            itemCount = number;
         } else {
-            cart += "," + id + "-" + number;
+            itemCount = parseInt(itemCount) + parseInt(number);
         }
-        localStorage.setItem("cart", cart);
-        
+        localStorage.setItem("item" + id, itemCount);
+        console.log(localStorage.getItem("item" + id));        
     });
 });
