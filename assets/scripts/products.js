@@ -6,7 +6,7 @@ $(document).ready(function() {
         badge.text(cartCount);
     }
 
-    var sortProducts = function(products, order, category) {
+    function sortProducts (products, order, category) {
         $("ul#products-list").empty();
 
         products.sort(function(a, b) {

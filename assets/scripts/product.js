@@ -29,6 +29,7 @@ $(document).ready(function() {
         $.each(data, function(index) {
             if (data[index]["id"].toString() === id) {
                 product = data[index];
+                return false;
             }
         });
     }).done(function() {
@@ -69,6 +70,6 @@ $(document).ready(function() {
             itemCount = parseInt(itemCount) + parseInt(number);
         }
         localStorage.setItem("item" + id, itemCount);
-        console.log(localStorage.getItem("item" + id));        
+        // Ajouter le texte de confirmation.
     });
 });

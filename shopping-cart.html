@@ -30,64 +30,24 @@
         </header>
 
         <main id="shopping-cart-content">
-            <h1>Panier</h1>
-            <table>
-                <tr>
-                    <th></th>
-                    <th>Produit</th>
-                    <th>Prix unitaire</th>
-                    <th>Quantité</th>
-                    <th>Prix</th>
-                </tr>
-                <tr>
-                    <td><button><i class="fas fa-times"></i></button></td>
-                    <td><a href="product.html">Apple TV</a></td>
-                    <td>249.99 $</td>
-                    <td>
-                        <button>
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <span class="quantity">1</span>
-                        <button>
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </td>
-                    <td>249.99 $</td>
-                </tr>
-                <tr>
-                    <td><button><i class="fas fa-times"></i></button></td>                   
-                    <td><a href="product.html">Nikon D7000</a></td>
-                    <td>549.99 $</td>
-                    <td>
-                        <button>
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <span class="quantity">1</span>
-                        <button>
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </td>
-                    <td>549.99 $</td>
-                </tr>
-                <tr>
-                    <td><button><i class="fas fa-times"></i></button></td>
-                    <td><a href="product.html">Portable</a></td>
-                    <td>699.99 $</td>
-                    <td>
-                        <button>
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <span class="quantity">1</span>
-                        <button>
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </td>
-                    <td>699.99 $</td>
-                </tr>
-            </table>
-            <p id="total">Total: <span id="price">1499.97 $</span></p>
-            <button class="btn"><span><i class="far fa-trash-alt"></i></span>Vider le panier</button>
-            <a href="order.html" class="btn">Commander »</a>
+            <div id="no-items">
+                <h1>Aucun produits dans le panier.</h1>
+            </div>
+            <div id="cart">
+                <h1>Panier</h1>
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>Produit</th>
+                        <th>Prix unitaire</th>
+                        <th>Quantité</th>
+                        <th>Prix</th>
+                    </tr>
+                </table>
+                <p id="total">Total: <span id="price">1499.97 $</span></p>
+                <button class="btn"><span><i class="far fa-trash-alt"></i></span>Vider le panier</button>
+                <a href="order.html" class="btn">Commander »</a>
+            </div>
         </main>
 
         <footer>
