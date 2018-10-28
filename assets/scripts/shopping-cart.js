@@ -44,16 +44,18 @@ $(document).ready(function() {
 
     /**
      * Function to execute when the minus button must be disabled.
+     * @param {Element} row The table row containing the proper button.
      */
-    function disableMinusButton() {
-        $(".remove-quantity-button").prop("disabled", true);
+    function disableMinusButton(row) {
+        row.find(".remove-quantity-button").prop("disabled", true);
     }
 
     /**
      * Function to execute when the minus button must be enabled.
+     * @param {Element} row The table row containing the proper button.
      */
-    function enableMinusButton() {
-        $(".remove-quantity-button").prop("disabled", false);
+    function enableMinusButton(row) {
+        row.find(".remove-quantity-button").prop("disabled", false);
     }
 
     /**
@@ -120,7 +122,8 @@ $(document).ready(function() {
                         "</td></tr>");
 
                     if (parseInt(items[i].quantity) === 1) {
-                        disableMinusButton();
+                        // $("table").children() --> tbody list, $("table").children().children() --> tr list
+                        disableMinusButton($("table").children().children().last());
                     }
 
                     // Set the total amount.
@@ -185,7 +188,7 @@ $(document).ready(function() {
             quantity--;
             row.find("span.quantity").text(quantity);
             if (quantity === 1) {
-                disableMinusButton();
+                disableMinusButton(row);
             }
 
             // Find the product id.
@@ -217,11 +220,11 @@ $(document).ready(function() {
         productTotal += productPrice;
         row.children().last().text(productTotal.toFixed(2));
 
+        if (quantity === 1) {
+            enableMinusButton(row);
+        }
         quantity++;
         row.find("span.quantity").text(quantity);
-        if (quantity > 1) {
-            enableMinusButton();
-        }
 
         // Find the product id.
         $.getJSON("./data/products.json", function(data) {
@@ -242,7 +245,7 @@ $(document).ready(function() {
 
     $("#remove-all-items-button").click(function() {
         if (confirm("Voulez-vous supprimer tous les produits du panier?")) {
-            // Remove everthing from the local storage.
+            // Remove everthing from the local storage. 
             localStorage.removeItem("count");
             for (var i = 1; i <= 13; i++) {
                 localStorage.removeItem("item" + i);
