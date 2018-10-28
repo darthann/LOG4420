@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    // Display the proper number of products in the cart.
     var cartCount = localStorage.getItem("count");
     if (cartCount != null && cartCount != 0) {
         var badge = $(".shopping-cart > .count");
@@ -6,9 +7,16 @@ $(document).ready(function() {
         badge.text(cartCount);
     }
 
+    /**
+     * Sort according to the sorting method.
+     * @param {Array} products The list of products to sort.
+     * @param {string} order The order telling how the sort must be executed (name or price).
+     * @param {string} category The category of products that must be displayed.
+     */
     function sortProducts (products, order, category) {
         $("ul#products-list").empty();
 
+        // Sorts the list accordingly.
         products.sort(function(a, b) {
             var keyA;
             var keyB;
@@ -37,6 +45,7 @@ $(document).ready(function() {
             }
         });
 
+        // Select products according to the selected category.
         var categorizedProducts = [];
         if (category === "all") {
             categorizedProducts = products;
@@ -49,6 +58,7 @@ $(document).ready(function() {
             });
         }
 
+        // Show the results.
         $.each(categorizedProducts, function(index) {
             var product = categorizedProducts[index];
             $("ul#products-list").append("<li><a href='product.html?id=" + product["id"] + "'><h3>" + product["name"] + 
@@ -72,7 +82,10 @@ $(document).ready(function() {
     });
 
     $("button").click(function() {
+        // The id correspond to the sorting way or category.
         var id = $(this).attr("id");
+
+        // The parent id correspond to "product-categories" or "product-criteria".
         var parentId = $(this).parent().attr("id");
 
         if (parentId === "product-categories") {
@@ -83,6 +96,7 @@ $(document).ready(function() {
 
         sortProducts(products, sortOrder, category);
 
+        // Select the button that has been clicked and unselect the previously selected button.
         $("#" + parentId).find("button.selected").removeClass("selected");
         $(this).addClass("selected");
     });

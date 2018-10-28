@@ -289,6 +289,17 @@ main {
     margin-right: 3px;
 }
 
+#dialog {
+    display: none;
+    width: 320px;
+    margin: 100px auto 0 auto;
+    padding: 15px;
+    background-color: black;
+    color: white;
+    border-radius: 6px;
+    text-align: center;
+}
+
 /*
 ---------------------------------------------------------------------------------
                                   Contact page
