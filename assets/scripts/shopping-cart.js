@@ -75,7 +75,7 @@ $(document).ready(function() {
         $(".shopping-cart > .count").text(count);
         localStorage.setItem("count", count);
 
-        var totalPrice = parseFloat($("#total-amount").text());
+        var totalPrice = parseFloat($("#total-amount").text().toString().replace(/[,]/, "."));
 
         if (addProduct) {
             totalPrice += productPrice;
@@ -127,7 +127,7 @@ $(document).ready(function() {
                     }
 
                     // Set the total amount.
-                    var totalPrice = parseFloat($("#total-amount").text());
+                    var totalPrice = parseFloat($("#total-amount").text().toString().replace(/[,]/, "."));
                     price = parseFloat(price);
                     if (isNaN(totalPrice)) {
                         totalPrice = price;
@@ -150,7 +150,7 @@ $(document).ready(function() {
         if (confirm("Voulez-vous supprimer le produit du panier?")) {
             var row = $(this).parent("td").parent("tr");
             var productName = row.find("a").text();
-            var productPrice = parseFloat(row.children().last().text());
+            var productPrice = parseFloat(row.children().last().text().toString().replace(/[,]/, "."));
             var id = null;
 
             // Find the product id.
@@ -175,15 +175,15 @@ $(document).ready(function() {
     $(document).on("click", "button.remove-quantity-button", function() {
         var row = $(this).parent("td").parent("tr");
         var productName = row.find("a").text();
-        var productPrice = parseFloat(row.find("td.unit-price").text());
-        var productTotal = parseFloat(row.children().last().text());
+        var productPrice = parseFloat(row.find("td.unit-price").text().toString().replace(/[,]/, "."));
+        var productTotal = parseFloat(row.children().last().text().toString().replace(/[,]/, "."));
         var quantity = parseInt(row.find("span.quantity").text());
         var id = null;
 
         // Another safety in case the disabled attribute fails.
         if (quantity > 1) {
             productTotal -= productPrice;
-            row.children().last().text(productTotal.toFixed(2));
+            row.children().last().text((productTotal.toFixed(2)).toString().replace(/[.]/, ","));
 
             quantity--;
             row.find("span.quantity").text(quantity);
@@ -212,13 +212,13 @@ $(document).ready(function() {
     $(document).on("click", "button.add-quantity-button", function() {
         var row = $(this).parent("td").parent("tr");
         var productName = row.find("a").text();
-        var productPrice = parseFloat(row.find("td.unit-price").text());
-        var productTotal = parseFloat(row.children().last().text());
+        var productPrice = parseFloat(row.find("td.unit-price").text().toString().replace(/[,]/, "."));
+        var productTotal = parseFloat(row.children().last().text().toString().replace(/[,]/, "."));
         var quantity = parseInt(row.find("span.quantity").text());
         var id = null;
 
         productTotal += productPrice;
-        row.children().last().text(productTotal.toFixed(2));
+        row.children().last().text((productTotal.toFixed(2)).toString().replace(/[.]/, ","));
 
         if (quantity === 1) {
             enableMinusButton(row);
