@@ -5,4 +5,9 @@ $(document).ready(function() {
         badge.show();
         badge.text(cartCount);
     }
+
+    document.getElementById("client-name").innerHTML = localStorage.getItem("first-name") 
+        + " " + localStorage.getItem("last-name");
+
+    document.getElementById("confirmation-number").innerHTML = localStorage.getItem("commandCount");
 });

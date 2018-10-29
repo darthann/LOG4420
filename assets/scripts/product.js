@@ -27,7 +27,7 @@ $(document).ready(function() {
 
     // Get the number of items in the cart.
     var cartCount = localStorage.getItem("count");
-    if (cartCount !== null && cartCount !== 0) {
+    if (cartCount != null && cartCount != 0) {
         cartCount = parseInt(cartCount);
         showBadge(cartCount);
     }
