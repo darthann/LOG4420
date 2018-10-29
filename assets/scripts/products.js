@@ -24,8 +24,8 @@ $(document).ready(function() {
                 keyA = a["price"];
                 keyB = b["price"];
             } else if (order === "A-Z" || order === "Z-A") {
-                keyA = a["name"];
-                keyB = b["name"];
+                keyA = a["name"].toLowerCase();
+                keyB = b["name"].toLowerCase();
             }
 
             if (order === "low-high" || order === "A-Z") {
@@ -63,7 +63,7 @@ $(document).ready(function() {
             var product = categorizedProducts[index];
             $("ul#products-list").append("<li><a href='product.html?id=" + product["id"] + "'><h3>" + product["name"] + 
                                         "</h3><img src='assets/img/" + product["image"] +
-                                        "' /><p>" + product["price"] + "</p></a></li>");
+                                        "' /><p>" + product["price"].toString().replace(/[.]/, ",") + "</p></a></li>");
         });
 
         $("p#products-count").text(categorizedProducts.length + " produits");

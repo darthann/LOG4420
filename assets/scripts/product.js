@@ -50,7 +50,7 @@ $(document).ready(function() {
             $("#product-name").text(product["name"]);
             $("#product-image").attr("src", "./assets/img/" + product["image"]);
             $("#product-desc").append(product["description"]);
-            $("#product-price").text(product["price"]);
+            $("#product-price").text(product["price"].toString().replace(/[.]/, ","));
     
             $.each(product["features"], function(index) {
                 $("#product-features").append("<li>" + product["features"][index] + "</li>");

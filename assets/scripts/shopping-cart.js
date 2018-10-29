@@ -75,7 +75,7 @@ $(document).ready(function() {
         $(".shopping-cart > .count").text(count);
         localStorage.setItem("count", count);
 
-        var totalPrice = parseFloat($("#price").text());
+        var totalPrice = parseFloat($("#total-amount").text());
 
         if (addProduct) {
             totalPrice += productPrice;
@@ -83,7 +83,7 @@ $(document).ready(function() {
             totalPrice -= productPrice;
         }
 
-        $("#price").text(totalPrice.toFixed(2));
+        $("#total-amount").text(totalPrice.toFixed(2).toString().replace(/[.]/, ","));
         
         if (count === 0) {
             cartGoesEmpty();
@@ -115,10 +115,10 @@ $(document).ready(function() {
                     // Add the proper informations in the table.
                     var price = (product["price"] * items[i].quantity).toFixed(2);
                     $("table").append("<tr><td><button class='remove-item-button'><i class='fas fa-times'></i></button></td><td>" +
-                        "<a href='product.html'>" + product["name"] + "</a></td><td class='unit-price'>" + product["price"] + 
+                        "<a href='product.html'>" + product["name"] + "</a></td><td class='unit-price'>" + product["price"].toString().replace(/[.]/, ",") + 
                         "</td><td><button class='remove-quantity-button'><i class='fas fa-minus'></i></button>" +
                         "<span class='quantity'>" + items[i].quantity +
-                        "</span><button class='add-quantity-button'><i class='fas fa-plus'></i></button></td><td>" + price + 
+                        "</span><button class='add-quantity-button'><i class='fas fa-plus'></i></button></td><td class='price'>" + price.toString().replace(/[.]/, ",") + 
                         "</td></tr>");
 
                     if (parseInt(items[i].quantity) === 1) {
@@ -127,14 +127,14 @@ $(document).ready(function() {
                     }
 
                     // Set the total amount.
-                    var totalPrice = parseFloat($("#price").text());
+                    var totalPrice = parseFloat($("#total-amount").text());
                     price = parseFloat(price);
                     if (isNaN(totalPrice)) {
                         totalPrice = price;
                     } else {
                         totalPrice += price;
                     }
-                    $("#price").text(totalPrice.toFixed(2));
+                    $("#total-amount").text(totalPrice.toFixed(2).toString().replace(/[.]/, ","));
                 }
             });
         });

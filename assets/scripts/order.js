@@ -18,7 +18,7 @@ $(document).ready(function() {
 
         return this.optional(element) || (value.length < 6 && correctMonth != -1 && correctYear1 != -1 
             && correctYear2 != -1 && String(value.charAt(3)).localeCompare("/"));
-    }, "La date d’expiration de votre carte de crédit est invalide.");
+    }, "La date d'expiration de votre carte de crédit est invalide.");
 
     //Règles de validation
     $("#order-form").validate({
@@ -50,28 +50,28 @@ $(document).ready(function() {
           },
           messages: {
               fname: { 
-                 required: "Ce champs est obligatoire.",
-                 minlength: "Veuillez entrer au moins 2 caractères."
+                 required: "Ce champ est obligatoire.",
+                 minlength: "Veuillez fournir au moins 2 caractères."
               },
               name: {
-                required: "Ce champs est obligatoire.",
-                minlength: "Veuillez entrer au moins 2 caractères."
+                required: "Ce champ est obligatoire.",
+                minlength: "Veuillez fournir au moins 2 caractères."
               },
               email: {
-                required: "Ce champs est obligatoire.",
-                email: "Le email doit être de la forme nom@domaine.com."
+                required: "Ce champ est obligatoire.",
+                email: "Veuillez fournir une adresse électronique valide."
                 },
                 phone: {
-                    required: "Ce champs est obligatoire.",
-                    phoneUS: "Le téléphone doit être de la forme ###-###-####."
+                    required: "Ce champ est obligatoire.",
+                    phoneUS: "Veuillez fournir un numéro de téléphone valide."
                 },
                 creditcard: {
-                    required: "Ce champs est obligatoire.",
-                    creditcard: "Le numéro de carte de crédit doit être valide."
+                    required: "Ce champ est obligatoire.",
+                    creditcard: "Veuillez fournir un numéro de carte de crédit valide."
                     //Un véritable numéro de carte de crédit est nécessaire.
                 },
                 expiry: {
-                    required: "Ce champs est obligatoire."
+                    required: "Ce champ est obligatoire."
                 }
           }
     });
