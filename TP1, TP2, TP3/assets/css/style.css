@@ -1,0 +1,493 @@
+html {
+    height: 100%;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 61px auto 71px;
+    min-height: 100%;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/*
+---------------------------------------------------------------------------------
+                                      Header
+---------------------------------------------------------------------------------
+*/
+
+header {
+    height: 60px;
+    background-color: #14597F;
+    border-bottom: solid 1px #0B2D3D;
+}
+
+#header-content {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header-content a {
+    position: relative;
+    display: inline-block;
+}
+
+#header-content a img {
+    padding-top: 10px;
+}
+
+#header-content nav {
+    position: relative;
+    float: right;
+    padding-top: 5px;
+}
+
+#header-content nav a {
+    padding: 5px 12px 7px 12px;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+#header-content nav a.active {
+    background-color: #1FB5E9;
+}
+
+#header-content nav a.shopping-cart {
+    padding: 4px 17px 4px 12px;
+}
+
+.fa-shopping-cart {
+    color: #14597F;
+}
+
+.count {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    right: 7px;
+    margin-left: -10px;
+    padding: 1px 7px;
+    font-size: 14px;
+    background-color: #D9534F;
+    border-radius: 10px;
+}
+
+main {
+    max-width: 1200px;
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+/*
+---------------------------------------------------------------------------------
+                                     Home page
+---------------------------------------------------------------------------------
+*/
+
+#home-content img {
+    position: relative;
+    float: right;
+}
+
+#home-content div {
+    position: relative;
+    display: inline-block;
+}
+
+.btn {
+    padding: 7px 12px;
+    color: white;
+    text-decoration: none;
+    background-color: #14597F;
+    border: solid 1px #0B2D3D;
+    border-radius: 4px;
+    transition: 0.2s ease-out;
+}
+
+.btn:hover {
+    background-color: #1FB5E9;
+}
+
+/*
+---------------------------------------------------------------------------------
+                                  Products page
+---------------------------------------------------------------------------------
+*/
+
+.container {
+    display: flex;
+}
+
+#products-content h1 {
+    margin-top: 0;
+    font-size: 30px;
+}
+
+#products-content aside {
+    flex-grow: 1;
+    width: 25%;
+}
+
+#products-content aside h4 {
+    margin-top: 5px;
+    margin-bottom: 12px;
+}
+
+#products-content aside button {
+    display: block;
+    width: 250px;
+    padding: 10px 0 10px 10px;
+    text-align: left;
+    background-color: white;
+    border: solid 1px #999;
+    transition: 0.2s ease-out;
+    cursor: pointer;
+}
+
+#products-content aside div button:not(:last-child) {
+    border-bottom: none;
+}
+
+#products-content aside div button:first-child {
+    border-radius: 4px 4px 0 0;
+}
+
+#products-content aside div button:last-child {
+    border-radius: 0 0 4px 4px;
+}
+
+#products-content aside div button:hover {
+    background-color: #F3F3F3;
+}
+
+#products-content aside div button.selected {
+    background-color: #DDF2FB;
+}
+
+#products-content div {
+    flex-grow: 3;
+    width: 75%;
+}
+
+#products-count {
+    float: right;
+    margin-top: 0;
+}
+
+#products-list {
+    width: 100%;
+    padding: 0;
+    list-style: none;
+}
+
+#products-list li {
+    display: inline-block;
+    width: 32%;
+    margin-bottom: 15px;
+    border: solid 1px #999;
+    border-radius: 4px;
+    transition: 0.2s ease-out;
+}
+
+#products-list li:not(:nth-child(3n)) {
+    margin-right: 10px;
+}
+
+#products-list li:hover {
+    background-color: #F3F3F3;
+}
+
+#products-list li a {
+    text-decoration: none;
+    color: black;
+}
+
+#products-list li h3 {
+    padding: 10px 0 0 10px;
+    margin-top: 0;
+}
+
+#products-list li p {
+    margin-bottom: 0;
+    padding: 0 10px 10px 0;
+    font-size: 18px;
+    text-align: right;
+}
+
+#products-list li img {
+    display: block;
+    height: 75%;
+    width: 75%;
+    margin: 0 auto;
+}
+
+/*
+---------------------------------------------------------------------------------
+                                  Product page
+---------------------------------------------------------------------------------
+*/
+
+#product-content div#no-product {
+    display: none;
+}
+
+#product-content div#product {
+    display: none;
+}
+
+#product-content img {
+    flex-grow: 2;
+    width: 50%;
+}
+
+#product-content div#description {
+    flex-grow: 2;
+    width: 50%;
+}
+
+#product-content h1 {
+    margin-top: 0;
+}
+
+#product-content h2 {
+    margin-top: 0;
+}
+
+#product-features {
+    margin-bottom: 25px;
+}
+
+.form-control {
+    width: 40px;
+    padding: 5px;
+    border: solid 1px #999;
+    border-radius: 4px;
+}
+
+#form {
+    border-top: dotted 2px #CCC;
+}
+
+#form button.btn {
+    cursor: pointer;
+}
+
+#product-content h3 {
+    float: left;
+}
+
+#product-content form {
+    float: right;
+    padding-top: 20px;
+}
+
+.btn .fa-cart-plus {
+    margin-right: 3px;
+}
+
+#dialog {
+    display: none;
+    width: 320px;
+    margin: 100px auto 0 auto;
+    padding: 15px;
+    background-color: black;
+    color: white;
+    border-radius: 6px;
+    text-align: center;
+}
+
+/*
+---------------------------------------------------------------------------------
+                                  Contact page
+---------------------------------------------------------------------------------
+*/
+
+#site-name {
+    font-style: italic;
+}
+
+#container {
+    width: 100%;
+    border: solid 1px #999;
+    border-radius: 8px;
+}
+
+.column {
+    display: inline-block;
+    width: 33%;
+    height: 185px;
+    vertical-align: top;
+}
+
+.column h2 {
+    margin-bottom: 0;
+    margin-top: 10px;
+    font-size: 60px;
+    text-align: center;
+}
+
+.column p {
+    text-align: center;
+    font-style: italic;
+}
+
+.column a {
+    text-decoration: none;
+    color: #2181b4;
+    font-style: normal;
+}
+
+
+
+/*
+---------------------------------------------------------------------------------
+                               Shopping cart page
+---------------------------------------------------------------------------------
+*/
+
+#shopping-cart-content div#no-items {
+    display: none;
+}
+
+#shopping-cart-content div#cart {
+    display: none;
+}
+
+#shopping-cart-content table {
+    width: 100%;
+    border-bottom: solid 1px black;
+    border-collapse: collapse;
+}
+
+#shopping-cart-content table button {
+    height: 24px;
+    width: 24px;
+    border: none;
+    background-color: #DDD;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+th {
+    height: 35px;
+    vertical-align: middle;
+    text-align: left;
+    border-bottom: solid 2px black;
+}
+
+th:last-child, td:last-child {
+    text-align: right;
+}
+
+td {
+    height: 45px;
+}
+
+td:first-child {
+    width: 40px;
+}
+
+td a {
+    color: #2181b4;
+    text-decoration: none;
+}
+
+#total {
+    text-align: right;
+}
+
+#total-amount {
+    font-weight: bold;
+}
+
+.quantity {
+    padding: 0 10px;
+}
+
+#shopping-cart-content a.btn {
+    float: right;
+}
+
+#shopping-cart-content button.btn {
+    padding: 9px 12px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.btn .fa-trash-alt {
+    margin-right: 5px;
+}
+
+/*
+---------------------------------------------------------------------------------
+                                  Order page
+---------------------------------------------------------------------------------
+*/
+
+.left, .right {
+    flex-grow: 2;
+    width: 50%;
+}
+
+.left {
+    padding-right: 10px;
+}
+
+.right {
+    padding-left: 10px;
+}
+
+#order-content label {
+    font-weight: bold;
+}
+
+#order-content input {
+    width: 98%;
+    padding: 9px;
+    padding-right: 0;
+    margin: 5px 0 15px 0;
+}
+
+#order-content button.btn {
+    float: right;
+    padding: 9px 12px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#order-form .error { 
+    color: red;
+}
+
+/*
+---------------------------------------------------------------------------------
+                               Confirmation page
+---------------------------------------------------------------------------------
+*/
+
+#confirmation-number {
+    font-weight: bold;
+}
+
+/*
+---------------------------------------------------------------------------------
+                                    Footer
+---------------------------------------------------------------------------------
+*/
+
+footer {
+    height: 70px;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    background-color: #EEEEEE;
+    border-top: solid 1px #CCCCCC;
+}
+
+footer h4 {
+    font-weight: normal;
+    text-align: center;
+}

@@ -1,5 +1,0 @@
-*.vscode
-settings.json
-*.editorconfig
-temps.txt
-node_modules/

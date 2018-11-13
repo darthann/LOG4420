@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>OnlineShop - Produits</title>
+        <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+        <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+        <script type="text/javascript" src="./assets/js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="./assets/scripts/products.js"></script>
+    </head>
+    <body>
+        <header>
+            <div id="header-content">
+                <a href="index.html">
+                    <img src="assets/img/logo.svg" height="40px" />
+                </a>
+                <nav>
+                    <a href="index.html">Accueil</a>
+                    <a href="products.html" class="active">Produits</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="shopping-cart.html" class="shopping-cart" title="Panier">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x fa-inverse"></i>
+                            <i class="fa fa-shopping-cart fa-stack-1x"></i>
+                        </span>
+                        <span class="count">3</span>
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <main id="products-content" class="container">
+            <!-- Sidebar -->
+            <aside>
+                <h4>Catégories</h4>
+                <div id="product-categories">
+                    <button id="cameras">Appareils photo</button>
+                    <button id="consoles">Consoles</button>
+                    <button id="screens">Écrans</button>
+                    <button id="computers">Ordinateurs</button>
+                    <button id="all" class="selected">Tous les produits</button> <!-- Default value -->
+                </div>
+                <br />
+                <h4>Classement</h4>
+                <div id="product-criteria">
+                    <button id="low-high" class="selected">Prix (bas-haut)</button> <!-- Default value -->
+                    <button id="high-low">Prix (haut-bas)</button>
+                    <button id="A-Z">Nom (A-Z)</button>
+                    <button id="Z-A">Nom (Z-A)</button>
+                </div>
+            </aside>
+
+            <!-- Main section -->
+            <div>
+                <p id="products-count"></p> <!-- Nombre de produits affichés -->
+                <h1>Produits</h1>
+                <ul id="products-list"></ul>
+            </div>
+        </main>
+
+        <footer>
+            <h4>Par Jean-Christophe Martel et Julien Gauthier</h4>
+        </footer>
+    </body>
+</html>
