@@ -1,5 +1,6 @@
 # Folders
 .idea
+.vscode
 node_modules
 tests/reports
 
