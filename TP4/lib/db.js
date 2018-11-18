@@ -30,3 +30,7 @@ mongoose.Promise = global.Promise;
 
 // TODO: Initialiser la connexion avec le "connect string" de votre base de données.
 mongoose.connect("mongodb://teamDeFeu:travail#4@ds149373.mlab.com:49373/online-shop", { useMongoClient: true });
+
+module.exports = {
+    mongoose: mongoose
+}

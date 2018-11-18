@@ -1,5 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const db = require("../lib/db");
+
+const getProducts = () => {
+    return db.mongoose.model("Product").find({});
+}
 
 router.get("/", (req, res) => {
     res.render("index", { title: "OnlineShop - Accueil" });
@@ -10,15 +15,19 @@ router.get("/accueil", (req, res) => {
 });
 
 router.get("/produits", (req, res) => {
-    res.render("products", { title: "OnlineShop - Produits" });
+    getProducts().then(function(products) {
+        res.render("products", { title: "OnlineShop - Produits", products: products }); 
+    })
 });
 
 router.get("/api/products", (req, res) => {
-    res.send("Products");
+    getProducts().then(function(products) {
+        res.json(products);
+    });
 });
 
 router.get("/produits/:id", (req, res) => {
-    res.render("product", { title: "OnlineShop - Produit", id: req.params.id});
+    res.render("product", { title: "OnlineShop - Produit", id: req.params.id });
 });
 
 router.get("/contact", (req, res) => {

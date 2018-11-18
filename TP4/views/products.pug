@@ -22,7 +22,14 @@ block content
             span#products-count.right-header 13 produits
             h1 Produits
             #products-list.products
-                .loading
+                each product in products
+                    .product(data-product-id=`${product.id}`)
+                        a(href=`./produits/${product.id}` title="En savoir plus...")
+                            h2= product.name
+                            img(src=`./assets/img/${product.image}` alt="product")
+                            p.price
+                                small Prix 
+                                | #{product.price.toString().replace('.', ',')}
 
 block scripts
     script(type='text/javascript', src='./assets/scripts/products.controller.js')
