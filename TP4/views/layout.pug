@@ -9,15 +9,18 @@ html
             .header-container
                 .logo
                     a(href='./accueil')
-                        img(alt='logo', src='./assets/img/logo.svg', title='Accueil')
+                        if (title==="OnlineShop - Produit")
+                            img(alt='logo', src='../assets/img/logo.svg', title='Accueil')
+                        else
+                            img(alt='logo', src='./assets/img/logo.svg', title='Accueil')
                 nav
                     ul
-                        li.active
-                            a(href='./accueil', class="bonjour " + title=="bonjour" ? "active" : "") Accueil
-                        li
-                            a(href='./produits') Produits
-                        li
-                            a(href='./contact') Contact
+                        li(class=title==="OnlineShop - Accueil" ? "active" : "")
+                            a(href=title==="OnlineShop - Produit" ? '../accueil': "./accueil") Accueil
+                        li(class=title==="OnlineShop - Produits" || title==="OnlineShop - Produit" ? "active" : "")
+                            a(href=title==="OnlineShop - Produit" ? '../produits': "./produits") Produits
+                        li(class=title==="OnlineShop - Contact" ? "active" : "")
+                            a(href=title==="OnlineShop - Produit" ? '../contact': "./contact") Contact
                         li
                             a.shopping-cart(href='./panier', title='Panier')
                                 span.fa-stack.fa-lg
