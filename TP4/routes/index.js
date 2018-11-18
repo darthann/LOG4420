@@ -13,8 +13,12 @@ router.get("/produits", (req, res) => {
     res.render("products", { title: "OnlineShop - Produits" });
 });
 
+router.get("/api/products", (req, res) => {
+    res.send("Products");
+});
+
 router.get("/produits/:id", (req, res) => {
-    res.render("product", { title: "OnlineShop - Produit", id: req.params[0]}) // À voir!
+    res.render("product", { title: "OnlineShop - Produit", id: req.params.id});
 });
 
 router.get("/contact", (req, res) => {
