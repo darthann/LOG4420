@@ -32,8 +32,8 @@ function getProducts(category, searchCriteria) {
     }
 }
 
-function getProduct(id) {
-    return db.mongoose.model("Product").find({id: id});
+function getProduct(productId) {
+    return db.mongoose.model("Product").find({id: productId});
 }
 
 function addProduct(body) {
@@ -56,6 +56,34 @@ function deleteProducts(productId) {
         return db.mongoose.model("Product").deleteMany({});
     }
     return db.mongoose.model("Product").deleteOne({id: productId});
+}
+
+function getOrders(orderId) {
+    if (!orderId) {
+        return db.mongoose.model("Order").find({});
+    }
+    return db.mongoose.model("Order").find({id: orderId});
+}
+
+function addOrder(body) {
+    let Order = db.mongoose.model("Order");
+    let order = new Order();
+
+    order.id = body.id;
+    order.firstName = body.firstName;
+    order.lastName = body.lastName;
+    order.email = body.email;
+    order.phone = body.phone;
+    order.products = body.products;
+
+    return order;
+}
+
+function deleteOrders(orderId) {
+    if (!orderId) {
+        return db.mongoose.model("Order").deleteMany({});
+    }
+    return db.mongoose.model("Order").deleteOne({id: orderId});
 }
 
 //-----------------------------------------------Routes---------------------------------------------------------
@@ -83,7 +111,11 @@ router.get("/produits", (req, res) => {
 router.get("/produits/:id", (req, res) => {
     getProduct(req.params.id).then(function(product) {
         res.status(200);
-        res.render("product", { title: "OnlineShop - Produit", product: product[0] });
+        if (product.length === 0) {
+            res.render("product-missing", { title: "OnlineShop - Produit" });
+        } else {
+            res.render("product", { title: "OnlineShop - Produit", product: product[0] });
+        }
     }).catch(function(err) {
         res.status(400);
         res.send(err);
@@ -125,7 +157,7 @@ router.get("/api/products/:id", (req, res) => {
         res.status(200);
         res.json(product);
     }).catch(function(err) {
-        res.status(400);
+        res.status(404);
         res.send(err);
     });
 });
@@ -143,7 +175,7 @@ router.post("/api/products", (req, res) => {
 });
 
 router.delete("/api/products/:id", (req, res) => {
-    deleteProducts(req.params.id).then(function() {
+    deleteProducts(req.params.id).then(function(obj) {
         res.status(204);
         res.send("The product has been deleted");
     }).catch(function(err) {
@@ -153,13 +185,65 @@ router.delete("/api/products/:id", (req, res) => {
 });
 
 router.delete("/api/products", (req, res) => {
-    deleteProducts(undefined).then(function() {
+    deleteProducts(undefined).then(function(obj) {
         res.status(204);
         res.send("The products has been deleted");
     }).catch(function(err) {
         res.status(404);
         res.send(err);
     });
+});
+
+router.get("/api/orders", (req, res) => {
+    getOrders(undefined).then(function(orders) {
+        res.status(200);
+        res.json(orders);
+    }).catch(function(err) {
+        res.status(400);
+        res.send(err);
+    });
+});
+
+router.get("/api/orders/:id", (req, res) => {
+    getOrders(req.params.id).then(function(order) {
+        res.status(200);
+        res.json(order);
+    }).catch(function(err) {
+        res.status(404);
+        res.send(err);
+    });
+});
+
+router.post("/api/orders", (req, res) => {
+    addOrder(req.body).save(function(err) {
+        if (!err) {
+            res.status(201);
+            res.send("The order has been created");
+        } else {
+            res.statut(400);
+            res.send(err);
+        }
+    });
+});
+
+router.delete("/api/orders/:id", (req, res) => {
+    deleteOrders(req.params.id).then(function(obj) {
+        res.status(204);
+        res.send("The order has been deleted");
+    }).catch(function(err) {
+        res.status(404);
+        res.send(err);
+    });
+});
+
+router.delete("/api/orders", (req, res) => {
+    deleteOrders(undefined).then(function(obj) {
+        res.status(204);
+        res.send("All the orders have been deleted");
+    }).catch(function(err) {
+        res.status(400);
+        res.send(err);
+    })
 });
 
 module.exports = router;
