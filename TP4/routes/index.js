@@ -127,7 +127,10 @@ router.get("/contact", (req, res) => {
 });
 
 router.get("/panier", (req, res) => {
-    res.render("shopping-cart", { title: "OnlineShop - Panier" });
+    if (!req.session.shoppingCart) {
+        req.session.shoppingCart = [];
+    }
+    res.render("shopping-cart", { title: "OnlineShop - Panier", shoppingCart: req.session.shoppingCart });
 });
 
 router.get("/commande", (req, res) => {
