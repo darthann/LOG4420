@@ -194,6 +194,101 @@ router.delete("/api/products", (req, res) => {
     });
 });
 
+router.get("/api/shopping-cart", (req, res) => {
+    if (!req.session.shoppingCart) {
+        req.session.shoppingCart = [];
+    }
+    res.status(200);
+    res.json(req.session.shoppingCart);
+});
+
+router.get("/api/shopping-cart/:productId", (req, res) => {
+    if (!req.session.shoppingCart) {
+        req.session.shoppingCart = [];
+    }
+    let product = req.session.shoppingCart.find(product => product.productId == req.params.productId);
+    if (product == undefined) {
+        res.status(404);
+        res.send(err);
+    }
+    else {
+        res.status(200);
+        res.json(product);
+    }
+});
+
+router.post("/api/shopping-cart", (req, res) => {
+    if(isNaN(req.body.quantity)) {
+        res.status(400);
+        res.send("The specified quantity is invalid.");
+        return;
+    }
+    getProduct(req.body.productId).then(function(product) {
+        if (!req.session.shoppingCart) {
+            req.session.shoppingCart = [];
+        }
+        let productInCart = req.session.shoppingCart.find(productInCart => 
+            productInCart.productId == req.body.productId);            
+        if (productInCart == undefined) {
+            req.session.shoppingCart.push({
+                productId: req.body.productId,
+                quantity: parseInt(req.body.quantity),
+                name: product.name,
+                price: product.price
+            });
+        }
+        else {
+            res.status(400);
+            res.send("The specified product has already been added to the shopping cart.");
+        }
+    }).catch(err => {
+        res.status(400);
+        res.send("The specified product does not exist.");
+    });
+});
+
+router.put("/api/shopping-cart/:productId", (req, res) => {
+    if(isNaN(req.body.quantity)) {
+        res.status(400);
+        res.send("The specified quantity is invalid.");
+        return;
+    }
+    if (!req.session.shoppingCart) {
+        req.session.shoppingCart = [];
+    }
+    let index = req.session.shoppingCart.findIndex(product => 
+        product.productId == req.body.productId);            
+    if (index > -1) {     
+        req.session.shoppingCart[index].quantity = req.body.quantity;
+        res.status(204);   
+    }
+    else {
+        res.status(404);
+        res.send();
+    }
+});
+
+router.delete("/api/shopping-cart/:productId", (req, res) => {
+    if (!req.session.shoppingCart) {
+        req.session.shoppingCart = [];
+    }
+    let index = req.session.shoppingCart.findIndex(product => 
+        product.productId == req.params.productId);     
+    if (index > -1) {
+        req.session.shoppingCart.splice(index, 1);
+        res.status(204);
+    }
+    else {
+        res.status(404);
+        res.send();
+    }
+});
+
+router.delete("/api/shopping-cart/", (req, res) => {
+    req.session.shoppingCart = [];
+    res.status(204);
+});
+
 router.get("/api/orders", (req, res) => {
     getOrders(undefined).then(function(orders) {
         res.status(200);
