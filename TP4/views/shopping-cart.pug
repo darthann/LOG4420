@@ -5,21 +5,36 @@ block content
         article
             h1 Panier
             #shopping-cart-container
-                table.table.shopping-cart-table
-                    thead
-                        tr
-                            th
-                            th Produit
-                            th Prix unitaire
-                            th Quantité
-                            th Prix
-                    tbody
-                p.shopping-cart-total
-                    | Total: 
-                    strong#total-amount
-                a.btn.pull-right(href='./commande')
-                    | Commander 
-                    i.fa.fa-angle-double-right
-                button#remove-all-items-button.btn
-                    i.fa.fa-trash-o
-                    |   Vider le panier
+                if shoppingCart.length == 0
+                    p Aucun produit dans le panier.
+                else
+                    table.table.shopping-cart-table
+                        thead
+                            tr
+                                th
+                                th Produit
+                                th Prix unitaire
+                                th Quantité
+                                th Prix
+                        tbody
+                            each product in shoppingCart
+                                tr(data-product-id=product.productId)
+                                    th 
+                                        button.btn.remove-item-button(title='Retirer du panier') X
+                                    th #{product.name}
+                                    th #{product.price.toString().replace('.', ',')}
+                                    th 
+                                        button.btn.remove-quantity-button(title='Enlever') -
+                                        label.quantity=product.quantity
+                                        button.btn.add-quantity-button(title='Ajouter') +
+                                    th #{(product.price * product.quantity).toString().replace('.', ',')}
+
+                    p.shopping-cart-total
+                        | Total: 
+                        strong#total-amount
+                    a.btn.pull-right(href='./commande')
+                        | Commander 
+                        i.fa.fa-angle-double-right
+                    button#remove-all-items-button.btn
+                        i.fa.fa-trash-o
+                        |   Vider le panier

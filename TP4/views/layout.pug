@@ -30,9 +30,9 @@ html
         block content
         footer
             p Par Jean-Christophe Martel et Julien Gauthier
-        script(type='text/javascript', src='./assets/js/jquery-3.2.1.min.js')
-        script(type='text/javascript', src='./assets/scripts/utils.js')
-        script(type='text/javascript', src='./assets/scripts/products.service.js')
-        script(type='text/javascript', src='./assets/scripts/shopping-cart.service.js')
-        script(type='text/javascript', src='./assets/scripts/shopping-cart.controller.js')
+        script(type='text/javascript', src=title==="OnlineShop - Produit" ? '../assets/js/jquery-3.2.1.min.js': './assets/js/jquery-3.2.1.min.js')
+        script(type='text/javascript', src=title==="OnlineShop - Produit" ? '../assets/scripts/utils.js': './assets/scripts/utils.js')
+        script(type='text/javascript', src=title==="OnlineShop - Produit" ? '../assets/scripts/products.service.js': './assets/scripts/products.service.js')
+        script(type='text/javascript', src=title==="OnlineShop - Produit" ? '../assets/scripts/shopping-cart.service.js': './assets/scripts/shopping-cart.service.js')
+        script(type='text/javascript', src=title==="OnlineShop - Produit" ? '../assets/scripts/shopping-cart.controller.js': './assets/scripts/shopping-cart.controller.js')
         block scripts
