@@ -20,14 +20,14 @@
     </section>
 </section>
 <article>
-    <span class="right-header" id="products-count">6 produits</span>
+    <span class="right-header" id="products-count">{{products.length}} produits</span>
     <h1>Produits</h1>
     <div class="products" id="products-list">
         <div *ngFor="let product of products" class="product">
             <a routerLink="/produits/{{product.id}}" title="En savoir plus...">
                 <h2>{{product.name}}</h2>
                 <img src="./assets/img/{{product.image}}" alt="{{product.name}}">
-                <p><small>Prix</small> {{product.price}}&thinsp;$</p>
+                <p><small>Prix</small> {{product.price | priceFilter}}&thinsp;$</p>
             </a>
         </div>
     </div>

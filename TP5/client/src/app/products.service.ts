@@ -1,6 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Pipe, PipeTransform } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Config } from './config';
+
+@Pipe({name: "priceFilter"})
+export class PriceFilterPipe implements PipeTransform {
+    transform(value: number): string {
+        return value.toFixed(2).replace('.', ',');
+    }
+}
 
 /**
  * Defines a product.
