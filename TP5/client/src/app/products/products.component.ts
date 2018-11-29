@@ -20,8 +20,8 @@ export class ProductsComponent implements OnInit {
      */
     constructor(private productsService: ProductsService) {
         this.products = [];
-        this.category = "all";
-        this.criteria = "price-asc";
+        this.category = 'all';
+        this.criteria = 'price-asc';
     }
 
     /**
@@ -34,10 +34,9 @@ export class ProductsComponent implements OnInit {
     /**
      * This method is called when one of the Category buttons is clicked.
      * It changes the category filter and only shows the appropriate products.
-     * 
      * @param category The selected category.
      */
-    private changeCategory(category: string) : void {
+    private changeCategory(category: string): void {
         this.category = category;
         this.getProducts();
     }
@@ -45,10 +44,9 @@ export class ProductsComponent implements OnInit {
     /**
      * This method is called when one of the Criteria buttons is clicked.
      * It changes the criteria filter and shows the products sorted in the appropriate way.
-     * 
      * @param criteria The selected criteria.
      */
-    private changeCriteria(criteria: string) : void {
+    private changeCriteria(criteria: string): void {
         this.criteria = criteria;
         this.getProducts();
     }
@@ -56,11 +54,11 @@ export class ProductsComponent implements OnInit {
     /**
      * Gets all the products and save them in a list.
      */
-    private getProducts() : void {
+    private getProducts(): void {
         this.productsService.getProducts(this.criteria, this.category).then((response) => {
             this.products = [];
             response.forEach(product => {
-                let tempProduct = new Product;
+                const tempProduct = new Product;
 
                 tempProduct.id = product.id;
                 tempProduct.name = product.name;

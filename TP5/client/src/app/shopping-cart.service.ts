@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Config } from "./config";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Config } from './config';
 
 export class Item {
     id: number;
@@ -28,40 +28,40 @@ export class ShoppingCartService {
      */
     constructor(private http: HttpClient) { }
 
-    getItems(): Promise<Item[]> {
+    getItems(): void/*Promise<Item[]>*/ {
         const url = `${Config.apiUrl}/shopping-cart`;
 
-        return this.http.get(url).toPromise().then(items => items as Item[]).catch(ShoppingCartService.handleError);
+        this.http.get(url).toPromise().then(res => {
+            console.log(res);
+        }).catch(ShoppingCartService.handleError);
+
     }
 
     getItem(productId: number): Promise<Item> {
         const url = `${Config.apiUrl}/shopping-cart/${productId}`;
-        
+
         return this.http.get(url).toPromise().then(item => item as Item).catch(ShoppingCartService.handleError);
     }
 
-    addItem(item: Item): Promise<boolean> {
+    addItem(itemId, quantity): Promise<{}> {
         const url = `${Config.apiUrl}/shopping-cart`;
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         const options = { headers: headers, withCredentials: true };
 
         return this.http.post(url, JSON.stringify({
-            productId: item.id,
-            quantity: item.quantity
-            }), options).toPromise().then(res => {
-                let promise = res as Promise<boolean>;
-                return promise.then(hasError => !hasError);
-            }).catch(ShoppingCartService.handleError);
+            productId: itemId,
+            quantity: quantity
+            }), options).toPromise().then().catch(ShoppingCartService.handleError);
     }
 
-    updateItem(item: Item): Promise<boolean> {
-        const url = `${Config.apiUrl}/shopping-cart${item.id}`;
+    updateItem(itemId, quantity): Promise<boolean> {
+        const url = `${Config.apiUrl}/shopping-cart${itemId}`;
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         const options = { headers: headers, withCredentials: true };
 
         return this.http.put(url, JSON.stringify({
-            productId: item.id,
-            quantity: item.quantity    
+            productId: itemId,
+            quantity: quantity
             }), options).toPromise().then(index => index === 0).catch(ShoppingCartService.handleError);
     }
 

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SkipSelf } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService, Product } from 'app/products.service';
+import { ShoppingCartService, Item } from 'app/shopping-cart.service';
 
 /**
  * Defines the component responsible to manage the product page.
@@ -13,6 +14,7 @@ export class ProductComponent implements OnInit {
 
     private product: Product;
     private quantity: number;
+    private dialogVisible: boolean;
 
     /**
      * Initializes a new instance of the ProductComponent class.
@@ -20,8 +22,13 @@ export class ProductComponent implements OnInit {
      * @param route                   The active route.
      * @param productsService         The products service.
      */
-    constructor(private route: ActivatedRoute, private productsService: ProductsService) {
+    constructor(private route: ActivatedRoute, private productsService: ProductsService, private shoppingCartService: ShoppingCartService) {
         this.quantity = 1;
+        this.dialogVisible = false;
+        this.product = new Product;
+        this.product.image = 'white.png';
+        this.product.price = 0;
+        this.product.features = [];
     }
 
     /**
@@ -29,10 +36,10 @@ export class ProductComponent implements OnInit {
      * Gets the selected product and save it in a Product object.
      */
     ngOnInit() {
-        const productId = parseInt(this.route.snapshot.paramMap.get('id'));
-        
+        const productId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
+
         this.productsService.getProduct(productId).then((product) => {
-            let tempProduct = new Product;
+            const tempProduct = new Product;
 
             tempProduct.id = product.id;
             tempProduct.name = product.name;
@@ -52,7 +59,39 @@ export class ProductComponent implements OnInit {
      * Called when the form button is clicked.
      * Adds the product with the appropriate quantity in the shopping cart.
      */
-    private addProduct() : void {
-        console.log("Ajouter " + this.quantity + " exemplaires de ce produits dans le panier.");
+    private addProduct(): void {
+        this.shoppingCartService.addItem(this.product.id, this.quantity).then(() => {
+            this.showDialog(true);
+            this.shoppingCartService.getItems();
+        });
+
+            // .then(items => {
+            // let itemFound = false;
+            // console.log(items);
+            // items.forEach(item => {
+            //     if (item.id === this.product.id) {
+            //         itemFound = true;
+            //         this.shoppingCartService.updateItem(this.product.id, this.quantity).then(success => {
+            //             this.showDialog(success);
+            //             return;
+            //         });
+            //     }
+            // });
+
+            // if (!itemFound) {
+            //     this.shoppingCartService.addItem(this.product.id, this.quantity).then(() => {
+            //         this.showDialog(true);
+            //     });
+            // }
+        // });
+    }
+
+    private showDialog(success: boolean) {
+        if (success) {
+            this.dialogVisible = true;
+            setTimeout(() => {
+                this.dialogVisible = false;
+            }, 5000);
+        }
     }
 }
