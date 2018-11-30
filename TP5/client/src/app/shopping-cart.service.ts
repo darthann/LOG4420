@@ -28,13 +28,10 @@ export class ShoppingCartService {
      */
     constructor(private http: HttpClient) { }
 
-    getItems(): void/*Promise<Item[]>*/ {
+    getItems(): Promise<Item[]> {
         const url = `${Config.apiUrl}/shopping-cart`;
 
-        this.http.get(url).toPromise().then(res => {
-            console.log(res);
-        }).catch(ShoppingCartService.handleError);
-
+        return this.http.get(url).toPromise().then(items => items as Item[]).catch(ShoppingCartService.handleError);
     }
 
     getItem(productId: number): Promise<Item> {

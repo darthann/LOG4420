@@ -60,10 +60,13 @@ export class ProductComponent implements OnInit {
      * Adds the product with the appropriate quantity in the shopping cart.
      */
     private addProduct(): void {
-        this.shoppingCartService.addItem(this.product.id, this.quantity).then(() => {
-            this.showDialog(true);
-            this.shoppingCartService.getItems();
-        });
+        if (this.quantity === 1) {
+            this.shoppingCartService.addItem(this.product.id, this.quantity).then(() => {
+                this.showDialog(true);
+            });
+        } else {
+            this.shoppingCartService.getItems().then(items => console.log(items)).catch(err => console.log(err));
+        }
 
             // .then(items => {
             // let itemFound = false;
