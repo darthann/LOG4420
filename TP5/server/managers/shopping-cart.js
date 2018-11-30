@@ -93,6 +93,7 @@ self.updateItemQuantity = (productId, quantity) => {
   }
   if (!isNaN(quantity) && typeof quantity === "number" && quantity >= 0) {
     item.quantity = quantity;
+    console.log(items);
     return 0;
   } else {
     return 2;

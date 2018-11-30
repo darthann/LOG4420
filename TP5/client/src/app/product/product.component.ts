@@ -60,33 +60,28 @@ export class ProductComponent implements OnInit {
      * Adds the product with the appropriate quantity in the shopping cart.
      */
     private addProduct(): void {
-        if (this.quantity === 1) {
-            this.shoppingCartService.addItem(this.product.id, this.quantity).then(() => {
-                this.showDialog(true);
+        this.shoppingCartService.getItems().then(items => {
+            let itemFound = false;
+            items.forEach(item => {
+                if (item.productId === this.product.id) {
+                    itemFound = true;
+                    this.shoppingCartService.updateItem(this.product.id, this.quantity).then(success => {
+                        this.showDialog(success);
+                        return;
+                    }).catch(err => {
+                        console.log(err);
+                    });
+                }
             });
-        } else {
-            this.shoppingCartService.getItems().then(items => console.log(items)).catch(err => console.log(err));
-        }
 
-            // .then(items => {
-            // let itemFound = false;
-            // console.log(items);
-            // items.forEach(item => {
-            //     if (item.id === this.product.id) {
-            //         itemFound = true;
-            //         this.shoppingCartService.updateItem(this.product.id, this.quantity).then(success => {
-            //             this.showDialog(success);
-            //             return;
-            //         });
-            //     }
-            // });
-
-            // if (!itemFound) {
-            //     this.shoppingCartService.addItem(this.product.id, this.quantity).then(() => {
-            //         this.showDialog(true);
-            //     });
-            // }
-        // });
+            if (!itemFound) {
+                this.shoppingCartService.addItem(this.product.id, this.quantity).then(success => {
+                    this.showDialog(success);
+                });
+            }
+        }).catch(err => {
+            console.log(err);
+        });
     }
 
     private showDialog(success: boolean) {

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Config } from './config';
 
 export class Item {
-    id: number;
+    productId: number;
     quantity: number;
 }
 
@@ -30,53 +30,39 @@ export class ShoppingCartService {
 
     getItems(): Promise<Item[]> {
         const url = `${Config.apiUrl}/shopping-cart`;
-        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        const options = { headers: headers, withCredentials: true };
-
-        return this.http.get(url, options).toPromise().then(items => items as Item[]).catch(ShoppingCartService.handleError);
+        return this.http.get(url, Config.options).toPromise().then(items => items as Item[]).catch(ShoppingCartService.handleError);
     }
 
     getItem(productId: number): Promise<Item> {
         const url = `${Config.apiUrl}/shopping-cart/${productId}`;
-        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        const options = { headers: headers, withCredentials: true };
-
-        return this.http.get(url, options).toPromise().then(item => item as Item).catch(ShoppingCartService.handleError);
+        return this.http.get(url, Config.options).toPromise().then(item => item as Item).catch(ShoppingCartService.handleError);
     }
 
-    addItem(itemId, quantity): Promise<{}> {
+    addItem(itemId, quantity): Promise<boolean> {
         const url = `${Config.apiUrl}/shopping-cart`;
-        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        const options = { headers: headers, withCredentials: true };
 
         return this.http.post(url, JSON.stringify({
             productId: itemId,
             quantity: quantity
-            }), options).toPromise().then().catch(ShoppingCartService.handleError);
+        }), Config.options).toPromise().then(() => true).catch(ShoppingCartService.handleError);
     }
 
     updateItem(itemId, quantity): Promise<boolean> {
-        const url = `${Config.apiUrl}/shopping-cart${itemId}`;
-        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        const options = { headers: headers, withCredentials: true };
+        const url = `${Config.apiUrl}/shopping-cart/${itemId}`;
 
         return this.http.put(url, JSON.stringify({
             productId: itemId,
             quantity: quantity
-            }), options).toPromise().then(index => index === 0).catch(ShoppingCartService.handleError);
+        }), Config.options).toPromise().then(() => true).catch(ShoppingCartService.handleError);
     }
 
     deleteItem(productId: number): Promise<boolean> {
         const url = `${Config.apiUrl}/shopping-cart${productId}`;
-        const options = { withCredentials: true };
-
-        return this.http.delete(url, options).toPromise().then(hasError => !hasError).catch(ShoppingCartService.handleError);
+        return this.http.delete(url, Config.options).toPromise().then(hasError => !hasError).catch(ShoppingCartService.handleError);
     }
 
     deleteItems(): Promise<boolean> {
         const url = `${Config.apiUrl}/shopping-cart`;
-        const options = { withCredentials: true };
-
-        return this.http.delete(url, options).toPromise().then(() => true).catch(ShoppingCartService.handleError);
+        return this.http.delete(url, Config.options).toPromise().then(() => true).catch(ShoppingCartService.handleError);
     }
 }
