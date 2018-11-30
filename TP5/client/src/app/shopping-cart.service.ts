@@ -30,14 +30,18 @@ export class ShoppingCartService {
 
     getItems(): Promise<Item[]> {
         const url = `${Config.apiUrl}/shopping-cart`;
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        const options = { headers: headers, withCredentials: true };
 
-        return this.http.get(url).toPromise().then(items => items as Item[]).catch(ShoppingCartService.handleError);
+        return this.http.get(url, options).toPromise().then(items => items as Item[]).catch(ShoppingCartService.handleError);
     }
 
     getItem(productId: number): Promise<Item> {
         const url = `${Config.apiUrl}/shopping-cart/${productId}`;
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        const options = { headers: headers, withCredentials: true };
 
-        return this.http.get(url).toPromise().then(item => item as Item).catch(ShoppingCartService.handleError);
+        return this.http.get(url, options).toPromise().then(item => item as Item).catch(ShoppingCartService.handleError);
     }
 
     addItem(itemId, quantity): Promise<{}> {
