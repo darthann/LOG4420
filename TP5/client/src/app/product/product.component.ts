@@ -65,8 +65,8 @@ export class ProductComponent implements OnInit {
             items.forEach(item => {
                 if (item.productId === this.product.id) {
                     itemFound = true;
-                    this.shoppingCartService.updateItem(this.product.id, this.quantity).then(success => {
-                        this.showDialog(success);
+                    this.shoppingCartService.updateItem(this.product.id, this.quantity).then(() => {
+                        this.showDialog();
                         return;
                     }).catch(err => {
                         console.log(err);
@@ -75,8 +75,8 @@ export class ProductComponent implements OnInit {
             });
 
             if (!itemFound) {
-                this.shoppingCartService.addItem(this.product.id, this.quantity).then(success => {
-                    this.showDialog(success);
+                this.shoppingCartService.addItem(this.product.id, this.quantity).then(() => {
+                    this.showDialog();
                 });
             }
         }).catch(err => {
@@ -84,12 +84,13 @@ export class ProductComponent implements OnInit {
         });
     }
 
-    private showDialog(success: boolean) {
-        if (success) {
-            this.dialogVisible = true;
-            setTimeout(() => {
-                this.dialogVisible = false;
-            }, 5000);
-        }
+    /**
+     * Shows the dialog telling that the product has been added in the cart for 5 seconds.
+     */
+    private showDialog() {
+        this.dialogVisible = true;
+        setTimeout(() => {
+            this.dialogVisible = false;
+        }, 5000);
     }
 }

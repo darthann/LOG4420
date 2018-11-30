@@ -28,41 +28,65 @@ export class ShoppingCartService {
      */
     constructor(private http: HttpClient) { }
 
+    /**
+     * Gets all the items that are currently in the shopping-cart.
+     */
     getItems(): Promise<Item[]> {
         const url = `${Config.apiUrl}/shopping-cart`;
         return this.http.get(url, Config.options).toPromise().then(items => items as Item[]).catch(ShoppingCartService.handleError);
     }
 
+    /**
+     * Gets a single product that is in the database.
+     * @param productId The id associated with the product.
+     */
     getItem(productId: number): Promise<Item> {
         const url = `${Config.apiUrl}/shopping-cart/${productId}`;
         return this.http.get(url, Config.options).toPromise().then(item => item as Item).catch(ShoppingCartService.handleError);
     }
 
-    addItem(itemId, quantity): Promise<boolean> {
+    /**
+     * Adds the current product (along with its quantity) in the shopping-cart.
+     * @param productId The id associated with the product.
+     * @param quantity The quantity of the product.
+     */
+    addItem(productId, quantity): Promise<{}> {
         const url = `${Config.apiUrl}/shopping-cart`;
 
         return this.http.post(url, JSON.stringify({
-            productId: itemId,
+            productId: productId,
             quantity: quantity
-        }), Config.options).toPromise().then(() => true).catch(ShoppingCartService.handleError);
+        }), Config.options).toPromise().then().catch(ShoppingCartService.handleError);
     }
 
-    updateItem(itemId, quantity): Promise<boolean> {
-        const url = `${Config.apiUrl}/shopping-cart/${itemId}`;
+    /**
+     * Changes the quantity of a product in the shopping-cart.
+     * @param productId The id associated with the product.
+     * @param quantity The new quantity of the product.
+     */
+    updateItem(productId, quantity): Promise<{}> {
+        const url = `${Config.apiUrl}/shopping-cart/${productId}`;
 
         return this.http.put(url, JSON.stringify({
-            productId: itemId,
+            productId: productId,
             quantity: quantity
-        }), Config.options).toPromise().then(() => true).catch(ShoppingCartService.handleError);
+        }), Config.options).toPromise().then().catch(ShoppingCartService.handleError);
     }
 
-    deleteItem(productId: number): Promise<boolean> {
+    /**
+     * Removes an item from the shopping-cart.
+     * @param productId The id associated with the product.
+     */
+    deleteItem(productId: number): Promise<{}> {
         const url = `${Config.apiUrl}/shopping-cart${productId}`;
-        return this.http.delete(url, Config.options).toPromise().then(hasError => !hasError).catch(ShoppingCartService.handleError);
+        return this.http.delete(url, Config.options).toPromise().then().catch(ShoppingCartService.handleError);
     }
 
-    deleteItems(): Promise<boolean> {
+    /**
+     * Removes all items in the shopping-cart.
+     */
+    deleteItems(): Promise<{}> {
         const url = `${Config.apiUrl}/shopping-cart`;
-        return this.http.delete(url, Config.options).toPromise().then(() => true).catch(ShoppingCartService.handleError);
+        return this.http.delete(url, Config.options).toPromise().then().catch(ShoppingCartService.handleError);
     }
 }
