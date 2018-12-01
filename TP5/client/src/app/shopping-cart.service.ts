@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Config } from './config';
 
@@ -9,6 +9,10 @@ export class Item {
 
 @Injectable()
 export class ShoppingCartService {
+
+    private itemsCount: number;
+
+    @Output() onItemsCountChange: EventEmitter<number> = new EventEmitter();
 
     /**
      * Handles the current error.
@@ -22,31 +26,22 @@ export class ShoppingCartService {
     }
 
     /**
-     * Initializes a new instance of the ProductsService class.
+     * Initializes a new instance of the ShoppingCartService class.
      *
      * @param http                    The HTTP service to use.
      */
-    constructor(private http: HttpClient) { }
-
-    /**
-     * Gets all the items that are currently in the shopping-cart.
-     */
-    getItems(): Promise<Item[]> {
-        const url = `${Config.apiUrl}/shopping-cart`;
-        return this.http.get(url, Config.options).toPromise().then(items => items as Item[]).catch(ShoppingCartService.handleError);
-    }
-
-    /**
-     * Gets a single product that is in the database.
-     * @param productId The id associated with the product.
-     */
-    getItem(productId: number): Promise<Item> {
-        const url = `${Config.apiUrl}/shopping-cart/${productId}`;
-        return this.http.get(url, Config.options).toPromise().then(item => item as Item).catch(ShoppingCartService.handleError);
+    constructor(private http: HttpClient) {
+        this.itemsCount = 0;
+        this.getItems().then(items => {
+            items.forEach(item => {
+                this.itemsCount += item.quantity;
+            });
+        });
     }
 
     /**
      * Adds the current product (along with its quantity) in the shopping-cart.
+     *
      * @param productId The id associated with the product.
      * @param quantity The quantity of the product.
      */
@@ -60,7 +55,71 @@ export class ShoppingCartService {
     }
 
     /**
+     * Adds the number of items in the cart displayed in the nav bar.
+     *
+     * @param quantity The quantity of item added in the cart.
+     */
+    addItemsCount(quantity: number): void {
+        this.itemsCount += quantity;
+        this.onItemsCountChange.emit(this.itemsCount);
+    }
+
+    /**
+     * Removes an item from the shopping-cart.
+     *
+     * @param productId The id associated with the product.
+     */
+    deleteItem(productId: number): Promise<{}> {
+        const url = `${Config.apiUrl}/shopping-cart/${productId}`;
+        return this.http.delete(url, Config.options).toPromise().then().catch(ShoppingCartService.handleError);
+    }
+
+    /**
+     * Removes all items in the shopping-cart.
+     */
+    deleteItems(): Promise<{}> {
+        const url = `${Config.apiUrl}/shopping-cart`;
+        return this.http.delete(url, Config.options).toPromise().then().catch(ShoppingCartService.handleError);
+    }
+
+    /**
+     * Gets a single product that is in the database.
+     *
+     * @param productId The id associated with the product.
+     */
+    getItem(productId: number): Promise<Item> {
+        const url = `${Config.apiUrl}/shopping-cart/${productId}`;
+        return this.http.get(url, Config.options).toPromise().then(item => item as Item).catch(ShoppingCartService.handleError);
+    }
+
+    /**
+     * Gets all the items that are currently in the shopping-cart.
+     */
+    getItems(): Promise<Item[]> {
+        const url = `${Config.apiUrl}/shopping-cart`;
+        return this.http.get(url, Config.options).toPromise().then(items => items as Item[]).catch(ShoppingCartService.handleError);
+    }
+
+    /**
+     * Gets the number of items dislpayed in the nav bar.
+     */
+    getItemsCount(): number {
+        return this.itemsCount;
+    }
+
+    /**
+     * Substracts the number of items in the cart displayed in the nav bar.
+     *
+     * @param quantity The quantity of products removed from the cart.
+     */
+    subItemsCount(quantity: number): void {
+        this.itemsCount -= quantity;
+        this.onItemsCountChange.emit(this.itemsCount);
+    }
+
+    /**
      * Changes the quantity of a product in the shopping-cart.
+     *
      * @param productId The id associated with the product.
      * @param quantity The new quantity of the product.
      */
@@ -74,19 +133,12 @@ export class ShoppingCartService {
     }
 
     /**
-     * Removes an item from the shopping-cart.
-     * @param productId The id associated with the product.
+     * Updates the number of items in the cart displayed in the nav bar.
+     *
+     * @param quantity The appropriate quantity of items in the cart.
      */
-    deleteItem(productId: number): Promise<{}> {
-        const url = `${Config.apiUrl}/shopping-cart${productId}`;
-        return this.http.delete(url, Config.options).toPromise().then().catch(ShoppingCartService.handleError);
-    }
-
-    /**
-     * Removes all items in the shopping-cart.
-     */
-    deleteItems(): Promise<{}> {
-        const url = `${Config.apiUrl}/shopping-cart`;
-        return this.http.delete(url, Config.options).toPromise().then().catch(ShoppingCartService.handleError);
+    updateItemsCount(quantity: number): void {
+        this.itemsCount = quantity;
+        this.onItemsCountChange.emit(this.itemsCount);
     }
 }

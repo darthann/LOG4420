@@ -16,7 +16,7 @@ export class Order {
 }
 
 @Injectable()
-export class OrderService {
+export class OrdersService {
 
     /**
      * Handles the current error.
@@ -30,7 +30,7 @@ export class OrderService {
     }
 
     /**
-     * Initializes a new instance of the ProductsService class.
+     * Initializes a new instance of the OrdersService class.
      *
      * @param http                    The HTTP service to use.
      */
@@ -41,7 +41,7 @@ export class OrderService {
      */
     getOrders(): Promise<Order[]> {
         const url = `${Config.apiUrl}/orders`;
-        return this.http.get(url, Config.options).toPromise().then(orders => orders as Order[]).catch(OrderService.handleError);
+        return this.http.get(url, Config.options).toPromise().then(orders => orders as Order[]).catch(OrdersService.handleError);
     }
 
     /**
@@ -50,7 +50,7 @@ export class OrderService {
      */
     getOrder(orderId: number): Promise<Order> {
         const url = `${Config.apiUrl}/orders/${orderId}`;
-        return this.http.get(url, Config.options).toPromise().then(order => order as Order).catch(OrderService.handleError);
+        return this.http.get(url, Config.options).toPromise().then(order => order as Order).catch(OrdersService.handleError);
     }
 
     /**
@@ -66,7 +66,7 @@ export class OrderService {
             email: order.email,
             phone: order.phone,
             products: order.products
-        }), Config.options).toPromise().then().catch(OrderService.handleError);
+        }), Config.options).toPromise().then().catch(OrdersService.handleError);
     }
 
     /**
@@ -75,7 +75,7 @@ export class OrderService {
      */
     deleteOrder(orderId: number): Promise<{}> {
         const url = `${Config.apiUrl}/orders/${orderId}`;
-        return this.http.delete(url, Config.options).toPromise().then().catch(OrderService.handleError);
+        return this.http.delete(url, Config.options).toPromise().then().catch(OrdersService.handleError);
     }
 
     /**
@@ -83,6 +83,6 @@ export class OrderService {
      */
     deleteOrders(): Promise<{}> {
         const url = `${Config.apiUrl}/orders`;
-        return this.http.delete(url, Config.options).toPromise().then().catch(OrderService.handleError);
+        return this.http.delete(url, Config.options).toPromise().then().catch(OrdersService.handleError);
     }
 }

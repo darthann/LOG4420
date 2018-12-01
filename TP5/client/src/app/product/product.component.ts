@@ -65,7 +65,10 @@ export class ProductComponent implements OnInit {
             items.forEach(item => {
                 if (item.productId === this.product.id) {
                     itemFound = true;
+                    const oldQuantity = item.quantity;
                     this.shoppingCartService.updateItem(this.product.id, this.quantity).then(() => {
+                        const newItemsCount = this.shoppingCartService.getItemsCount() - oldQuantity + this.quantity;
+                        this.shoppingCartService.updateItemsCount(newItemsCount);
                         this.showDialog();
                         return;
                     }).catch(err => {
@@ -76,6 +79,7 @@ export class ProductComponent implements OnInit {
 
             if (!itemFound) {
                 this.shoppingCartService.addItem(this.product.id, this.quantity).then(() => {
+                    this.shoppingCartService.addItemsCount(this.quantity);
                     this.showDialog();
                 });
             }

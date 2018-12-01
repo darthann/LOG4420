@@ -34,6 +34,7 @@ export class ProductsComponent implements OnInit {
     /**
      * This method is called when one of the Category buttons is clicked.
      * It changes the category filter and only shows the appropriate products.
+     *
      * @param category The selected category.
      */
     private changeCategory(category: string): void {
@@ -44,6 +45,7 @@ export class ProductsComponent implements OnInit {
     /**
      * This method is called when one of the Criteria buttons is clicked.
      * It changes the criteria filter and shows the products sorted in the appropriate way.
+     *
      * @param criteria The selected criteria.
      */
     private changeCriteria(criteria: string): void {

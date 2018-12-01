@@ -1,4 +1,4 @@
-<article>
+<article *ngIf="products && products.length > 0">
     <h1>Panier</h1>
     <table class="table shopping-cart-table">
         <thead>
@@ -42,5 +42,11 @@
     </table>
     <p class="shopping-cart-total">Total: <strong id="total-amount">{{total | priceFilter}}&thinsp;$</strong></p>
     <a class="btn pull-right" routerLink="/commande">Commander <i class="fa fa-angle-double-right"></i></a>
-    <button class="btn" id="remove-all-items-button"><i class="fa fa-trash-o"></i>&nbsp; Vider le panier</button>
+    <button class="btn" id="remove-all-items-button" (click)="removeAllItems()">
+        <i class="fa fa-trash-o"></i>&nbsp; Vider le panier
+    </button>
+</article>
+<article *ngIf="!products || products.length === 0">
+    <h1>Panier</h1>
+    <p>Aucun produits dans le panier</p>
 </article>
