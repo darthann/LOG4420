@@ -8,14 +8,14 @@
   "custom_assertions_path": [
     "./node_modules/nightwatch-custom-commands-assertions/js/assertions"
   ],
-  "globals_path": "./tests/e2e/global.js",
+  "globals_path": "../tests/e2e/global.js",
   "selenium" : {
     "start_process" : true,
     "server_path" : "./tests/bin/selenium-server-standalone-3.4.0.jar",
     "log_path" : "",
     "port" : 4444,
     "cli_args" : {
-      "webdriver.chrome.driver" : "./tests/bin/chromedriver"
+      "webdriver.chrome.driver" : "./tests/bin/chromedriver.exe"
     }
   },
 
