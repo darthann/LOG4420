@@ -72,7 +72,7 @@ export class OrderComponent implements OnInit {
             if (orders.length > 0) {
                 orderId = orders[orders.length - 1].id + 1;
             } else {
-                orderId = 0;
+                orderId = 1;
             }
 
             this.shoppingCartService.getItems().then(items => {

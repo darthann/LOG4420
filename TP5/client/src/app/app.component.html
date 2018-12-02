@@ -23,6 +23,7 @@
                             <i class="fa fa-shopping-cart fa-stack-1x"></i>
                         </span>
                         <span class="count" *ngIf="cartCount > 0">{{cartCount}}</span>
+                        <span class="count" style="display: none;" *ngIf="cartCount <= 0"></span>
                     </a>
                 </li>
             </ul>

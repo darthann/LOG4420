@@ -81,7 +81,7 @@ export class ShoppingCartComponent implements OnInit {
      * Removes all items from the cart.
      */
     private removeAllItems(): void {
-        if (confirm('Voulez-vous vraiment supprimer tous les produits du panier?')) {
+        if (confirm('Voulez-vous supprimer tous les produits du panier?')) {
             this.shoppingCartService.deleteItems().then(() => {
                 this.products = [];
                 this.total = 0;
@@ -99,18 +99,20 @@ export class ShoppingCartComponent implements OnInit {
      * @param productId The id associated with the product to be removed.
      */
     private removeItem(productId: number): void {
-        this.products.forEach(product => {
-            if (productId === product.id) {
-                this.shoppingCartService.deleteItem(productId).then(() => {
-                    this.total -= product.price * product.quantity;
-                    this.shoppingCartService.subItemsCount(product.quantity);
-                    this.products.splice(this.products.indexOf(product), 1);
-                    return;
-                }).catch(err => {
-                    console.log(err);
-                });
-            }
-        });
+        if (confirm('Voulez-vous supprimer le produit du panier?')) {
+            this.products.forEach(product => {
+                if (productId === product.id) {
+                    this.shoppingCartService.deleteItem(productId).then(() => {
+                        this.total -= product.price * product.quantity;
+                        this.shoppingCartService.subItemsCount(product.quantity);
+                        this.products.splice(this.products.indexOf(product), 1);
+                        return;
+                    }).catch(err => {
+                        console.log(err);
+                    });
+                }
+            });
+        }
     }
 
     /**

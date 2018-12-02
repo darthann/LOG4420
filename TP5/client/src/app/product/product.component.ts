@@ -15,6 +15,7 @@ export class ProductComponent implements OnInit {
     private product: Product;
     private quantity: number;
     private dialogVisible: boolean;
+    private productFound: boolean;
 
     /**
      * Initializes a new instance of the ProductComponent class.
@@ -25,6 +26,7 @@ export class ProductComponent implements OnInit {
     constructor(private route: ActivatedRoute, private productsService: ProductsService, private shoppingCartService: ShoppingCartService) {
         this.quantity = 1;
         this.dialogVisible = false;
+        this.productFound = false;
         this.product = new Product;
         this.product.image = 'white.png';
         this.product.price = 0;
@@ -50,6 +52,7 @@ export class ProductComponent implements OnInit {
             tempProduct.features = product.features;
 
             this.product = tempProduct;
+            this.productFound = true;
         }).catch((err) => {
             console.log(err);
         });
